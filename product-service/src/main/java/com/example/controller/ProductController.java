@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/product")
 @RequiredArgsConstructor
@@ -32,5 +34,30 @@ public class ProductController {
     @GetMapping("/productId/{id}")
     public ResponseEntity<ProductResponse> getProductById(@PathVariable int id){
         return new ResponseEntity<>(productService.getProductById(id), HttpStatus.OK);
+    }
+
+    @PutMapping("/deactivate/{skucode}")
+    public ResponseEntity<ProductResponse> deactivateProduct(@PathVariable String skucode){
+        return new ResponseEntity<>(productService.softDeleteProduct(skucode), HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ProductResponse>> getAllProducts(){
+        return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
+    }
+
+    @GetMapping("/active")
+    public ResponseEntity<List<ProductResponse>> getAllActiveProducts(){
+        return new ResponseEntity<>(productService.getAllActiveProducts(), HttpStatus.OK);
+    }
+
+    @GetMapping("/inactive")
+    public ResponseEntity<List<ProductResponse>> getAllInActiveProducts(){
+        return new ResponseEntity<>(productService.getAllInActiveProducts(), HttpStatus.OK);
+    }
+
+    @PutMapping("/activate/{skuCode}")
+    public ResponseEntity<ProductResponse> softAddProduct(@PathVariable String skuCode){
+        return new ResponseEntity<>(productService.softAddProduct(skuCode), HttpStatus.OK);
     }
 }
