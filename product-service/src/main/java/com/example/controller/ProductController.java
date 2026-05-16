@@ -60,4 +60,9 @@ public class ProductController {
     public ResponseEntity<ProductResponse> softAddProduct(@PathVariable String skuCode){
         return new ResponseEntity<>(productService.softAddProduct(skuCode), HttpStatus.OK);
     }
+
+    @GetMapping("/matching/skucodes")
+    public ResponseEntity<List<ProductResponse>> getAllProductsBySkuCodesIn(@RequestBody List<String> skuCodes){
+        return new ResponseEntity<>(productService.getProductBySkuCodeIn(skuCodes), HttpStatus.OK);
+    }
 }

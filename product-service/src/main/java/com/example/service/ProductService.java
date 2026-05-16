@@ -155,4 +155,12 @@ public class ProductService {
         product.setIsActive(true);
         return mapper.toProductResponse(product);
     }
+
+    public List<ProductResponse> getProductBySkuCodeIn(List<String> skuCodes){
+        List<Product> products = productRepo.findBySkuCodeIn(skuCodes);
+        return products
+                .stream()
+                .map(mapper::toProductResponse)
+                .collect(Collectors.toList());
+    }
 }

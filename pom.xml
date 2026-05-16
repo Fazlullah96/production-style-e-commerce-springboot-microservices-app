@@ -14,6 +14,7 @@
         <module>product-service</module>
         <module>order-service</module>
         <module>user-service</module>
+        <module>inventory-service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

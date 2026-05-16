@@ -12,4 +12,5 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     List<Product> findAllByIsActiveTrue();
     List<Product> findAllByIsActiveFalse();
     boolean existsBySkuCode(String skuCode);
+    List<Product> findBySkuCodeIn(List<String> skuCode);
 }
